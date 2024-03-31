@@ -29,7 +29,7 @@ def generate_qr_code_with_image(json_data: str, size: int, image_path: str) -> b
         img = img.resize((size, size))
 
         # Load the image
-        if image_path.startswith("http"):
+        if image_path.startswith("https"):
             # Download image from URL
             response = requests.get(image_path)
             if response.status_code != 200:
