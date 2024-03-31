@@ -1,8 +1,8 @@
-from fastapi import FastAPI, HTTPException, Response, Query, requests
+from fastapi import FastAPI, HTTPException, Response, Query
 import qrcode
 from io import BytesIO
 from PIL import Image
-
+import requests
 import os
 
 app = FastAPI()
@@ -29,7 +29,7 @@ def generate_qr_code_with_image(json_data: str, size: int, image_path: str) -> b
         img = img.resize((size, size))
 
         # Load the image
-        if image_path.startswith("https"):
+        if image_path.startswith("http"):
             # Download image from URL
             response = requests.get(image_path)
             if response.status_code != 200:
@@ -46,7 +46,7 @@ def generate_qr_code_with_image(json_data: str, size: int, image_path: str) -> b
         logo_size = int(size / 5)  # The logo will take up 1/5th of the QR code size
 
         # Resize the logo as per the calculated size
-        logo = logo.resize((100, 100))
+        logo = logo.resize((logo_size, logo_size))
 
         # Calculate the position where the image should be inserted
         pos = ((img.size[0] - logo.size[0]) // 2, (img.size[1] - logo.size[1]) // 2)
