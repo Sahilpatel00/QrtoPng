@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException, Response, Query
 import qrcode
 from io import BytesIO
 from PIL import Image
-import requests
 import os
 app = FastAPI()
 
