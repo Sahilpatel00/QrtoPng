@@ -46,7 +46,7 @@ def generate_qr_code_with_image(json_data: str, size: int, image_path: str) -> b
         logo_size = int(size / 5)  # The logo will take up 1/5th of the QR code size
 
         # Resize the logo as per the calculated size
-        logo = logo.resize((logo_size, logo_size))
+        logo = logo.resize((100, 100))
 
         # Calculate the position where the image should be inserted
         pos = ((img.size[0] - logo.size[0]) // 2, (img.size[1] - logo.size[1]) // 2)
